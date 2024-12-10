@@ -21,10 +21,12 @@ class EventStore {
         return this.events;
     }
 
-    storeEvent(event: any) {
-        this.events.push(event);
+    storeEvents(events: any[]) {
+        this.events = [...this.events, ...events];
         for (const handler of this.handlers) {
-            handler.handle(event);
+            for (const event of events) {
+                handler.handle(event);
+            }
         }
     }
 }

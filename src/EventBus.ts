@@ -13,9 +13,11 @@ class EventBus {
 
     }
 
-    publishEvents(event: any[]) {
+    publishEvents(events: any[]) {
         for (const handler of this.handlers) {
-            handler.handle(event);
+            for (const event of events) {
+                handler.handle(event);
+            }
         }
     }
 }
